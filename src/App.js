@@ -47,11 +47,11 @@ function App() {
             </div>
             <div className="mt-5">
             <input type="text"  class="input p-1" placeholder="xDAI address"/>
-            <a href="#" className="mt-3 small">
+            <a href="https://www.xdaichain.com/for-users/wallets/metamask/metamask-setup#manual-instructions" className="mt-3 small">
               How to conect xDAI chain with Metamask?
             </a>
             <div>
-            <a href="#" className="mt-3 small">
+            <a href="https://myterablock.medium.com/how-to-create-or-import-a-metamask-wallet-a551fc2f5a6b" className="mt-3 small">
             How to create a Metamask wallet? (Please store your private keys in a secure place)
             </a>
             </div>
