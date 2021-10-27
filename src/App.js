@@ -62,6 +62,11 @@ function App() {
           <p>
           With this collection we want to thank you for everything, and, gift you a memory of the good times we spent together in Lisbon. We hope to continue bringing collections in each of the #fvckmempools meetups that are organized around the world so we can continue to grow as a beautiful decentralized community. (This is a small preview of the collection)
           </p>
+          <p>
+            <b>
+            If you want to keep up to date with the latest news follow us on twitter <a href="https://twitter.com/nomu_nft">@nomu_nft</a>
+            </b>
+          </p>
           </Col>
         </Row>
         <Row justify="center">
