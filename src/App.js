@@ -63,6 +63,9 @@ function App() {
           With this collection we want to thank you for everything, and, gift you a memory of the good times we spent together in Lisbon. We hope to continue bringing collections in each of the #fvckmempools meetups that are organized around the world so we can continue to grow as a beautiful decentralized community. (This is a small preview of the collection)
           </p>
           <p>
+            <p>
+            Share this page with your friends using the <a target="_blank" rel="noreferrer" href="https://twitter.com/search?q=%23fvckmempool">hastag #fvckmempool</a>, and invite them to <a target="_blank" rel="noreferrer" href="https://t.me/fvckmempool">join the #fvckmempool army</a>.
+            </p>
             <b>
             If you want to keep up to date with the latest news follow us on twitter <a href="https://twitter.com/nomu_nft">@nomu_nft</a>
             </b>
@@ -92,11 +95,11 @@ function App() {
                   We need your email to avoid spammers and to notify you once we send the NFTs. <br/>
                   <b>If you have any problem during the process contact to the #fvckmempool admins on telegram.</b>
               </p>
-              <a href="https://www.xdaichain.com/for-users/wallets/metamask/metamask-setup#manual-instructions" className=" small text-white">
+              <a target="_blank" rel="noreferrer" href="https://www.xdaichain.com/for-users/wallets/metamask/metamask-setup#manual-instructions" className=" small text-white">
                 How to conect xDAI chain with Metamask?
               </a>
               <div>
-              <a href="https://myterablock.medium.com/how-to-create-or-import-a-metamask-wallet-a551fc2f5a6b" className=" small text-white">
+              <a target="_blank" rel="noreferrer" href="https://myterablock.medium.com/how-to-create-or-import-a-metamask-wallet-a551fc2f5a6b" className=" small text-white">
               How to create a Metamask wallet? (Please store your private keys in a secure place)
               </a>
               </div>
