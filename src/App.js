@@ -64,7 +64,7 @@ function App() {
           </p>
           <p>
             <p>
-            Share this page with your friends using the <a target="_blank" rel="noreferrer" href="https://twitter.com/search?q=%23fvckmempool">hastag #fvckmempool</a>, and invite them to <a target="_blank" rel="noreferrer" href="https://t.me/fvckmempool">join the #fvckmempool army</a>.
+            Share this page with your friends using the <a target="_blank" rel="noreferrer" href="https://twitter.com/search?q=%23fvckmempool">hastag #fvckmempool</a>, and invite them to <a target="_blank" rel="noreferrer" href="https://t.me/fvckmempool">join the #fvckmempool army to win a free NFT of the #fvckmempool collection</a>.
             </p>
             <b>
             If you want to keep up to date with the latest news follow us on twitter <a href="https://twitter.com/nomu_nft">@nomu_nft</a>
