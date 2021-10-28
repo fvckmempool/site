@@ -12,8 +12,10 @@ export default function Verify(props){
                 setMessage("The email: " + data + " has been verified, you will receive your NFT soon.")
             }
         }).catch((err) => {
-            setVerified(false)
-            setMessage(err)
+            if(err){
+                setVerified(false)
+                setMessage(err)
+            }
         })
     },[props])
     switch(verified){
