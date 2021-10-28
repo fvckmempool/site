@@ -1,4 +1,4 @@
-import React,{ useEffect } from 'react';
+import React from 'react';
 
 import {Row, Col, Form, Input, message, Button, List} from 'antd'
 import {createUser} from '../api'
