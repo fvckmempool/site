@@ -19,7 +19,7 @@ function createUser(data){
 }
 function verifyEmail(data){
     return new Promise(async (resolve, reject) => {
-        const response = await axios.get(endpoint + "/fvck/verify/" + data).catch((err) => {
+        const response = await axios.post(endpoint + "/fvck/verify/", {hash:data}).catch((err) => {
             if(err && err.response && err.response.data.message){
               reject(err.response.data.message)
             }else{
