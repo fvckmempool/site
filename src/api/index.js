@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const endpoint = "https://localhost" //"https://trib3.app"
+const endpoint = "https://trib3.app"//"https://localhost" //
 
 
 function createUser(data){
