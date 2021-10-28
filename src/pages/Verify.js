@@ -15,7 +15,7 @@ export default function Verify(props){
             setVerified(false)
             setMessage(err)
         })
-    },[])
+    },[props])
     switch(verified){
         case verified === false:
             return(
