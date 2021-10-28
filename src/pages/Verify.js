@@ -3,18 +3,15 @@ import { verifyEmail } from '../api';
 import {Result, Row, Col, Spin} from 'antd'
 export default function Verify(props){
     const [verified,setVerified] = useState(null)
-    const [message, setMessage] = useState("")
     useEffect(() => {
         const hash = props.match.params.hash
         verifyEmail(hash).then((data) => {
             if(data){
                 setVerified(true)
-                setMessage("The email: " + data + " has been verified, you will receive your NFT soon.")
             }
         }).catch((err) => {
             if(err){
                 setVerified(false)
-                setMessage(err)
             }
         })
     },[props])
@@ -24,7 +21,6 @@ export default function Verify(props){
                 <Result
                 status="error"
                 title={<span className="text-white">Error in the email verification!</span>}
-                subTitle={<span className="text-white">{message}</span>}
               />
             )
         case verified === true:
@@ -32,7 +28,6 @@ export default function Verify(props){
                     <Result
                     status="success"
                     title={<span className="text-white">Successfully verified email!</span>}
-                    subTitle={<span className="text-white">{message}</span>}
                   />
                 )
         default:
