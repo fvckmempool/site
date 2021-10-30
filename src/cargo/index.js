@@ -1,5 +1,4 @@
 import {Cargo} from '@cargo-eth/js';
-import Web3 from 'web3'
 const projectId = "617cfa7dc30abf0008466463"
 // Create a new instance of the Cargo class
 const cargo = new Cargo({ network: 'production' });

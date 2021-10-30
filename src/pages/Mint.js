@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react'
-import {Button, Upload, Modal, Row, Col, message, Spin, Result} from 'antd'
+import {Button,  Modal, message, Spin, Result} from 'antd'
 import {enableCargo, createMintingSession, saveNftDataIntoSession, mintNft} from '../cargo'
 
 import FilesUploader from '../components/FilesUploader'

@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react'
-import {Button, Upload, Modal, Row, Col, message} from 'antd'
+import {Button, Row, Col, message} from 'antd'
 import uuid from 'react-uuid'
 
 function getBase64(file) {
