@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Verify from './pages/Verify';
 import Mint from './pages/Mint';
 import Drinks from './pages/Drinks';
+// import Drink from './pages/Drink';
 
 function App() {
 return(
@@ -15,6 +16,7 @@ return(
     <Route path="/verify/:hash" component={Verify}></Route>
     <Route path="/mint" component={Mint}/>
     <Route path="/drinks" component={Drinks}/>
+    {/* <Route path="/drink/:id" component={Drink}/> */}
 
     <Route path="/" component={Home}/>
   </Switch>

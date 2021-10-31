@@ -71,10 +71,23 @@ function getCollection(){
         }
     })
 }
+function getCollectible(id){
+    return new Promise(async (resolve, reject) => {
+        const options = {
+            projectId:projectId,
+            collectibleId:id
+        }
+        const collection = await cargo.api.getTokenDetails(options).catch((err) => reject(err))
+        if(collection && collection.status === 200 && collection.err === false){
+            resolve(collection)
+        }
+    })
+}
 export {
 enableCargo, 
 createMintingSession,
 saveNftDataIntoSession,
 mintNft,
-getCollection
+getCollection,
+getCollectible
 }
