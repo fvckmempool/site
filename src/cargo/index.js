@@ -58,9 +58,23 @@ function saveNftDataIntoSession(sessionId, nfts){
 
     })
 }
+
+function getCollection(){
+    return new Promise(async (resolve, reject) => {
+        const options = {
+            projectId:projectId,
+            limit:100
+        }
+        const collection = await cargo.api.getTokensByProject(options).catch((err) => reject(err))
+        if(collection && collection.status === 200 && collection.err === false){
+            resolve(collection.data.results)
+        }
+    })
+}
 export {
 enableCargo, 
 createMintingSession,
 saveNftDataIntoSession,
-mintNft
+mintNft,
+getCollection
 }

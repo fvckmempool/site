@@ -1,6 +1,7 @@
 import React,{useEffect, useState} from 'react'
 import {Button, Row, Col, message} from 'antd'
 import uuid from 'react-uuid'
+import seedsMetadata from "../api/metadata"
 
 function getBase64(file) {
     return new Promise((resolve, reject) => {
@@ -15,26 +16,20 @@ export default function FileUploader({parentCallback}){
     const [files, setFiles] = useState([])
 
     const uploadFile = async (evt) => {
+        console.log(evt.target.files)
         const fileKeys = Object.keys(evt.target.files)
         const _files = fileKeys.map(async (k) => {
             const f = evt.target.files[k]
             const name = f.name.split(".")[0]
-            const metadata = {
-                bg:name[0],
-                cup:name[1],
-                label:name[2],
-                lava:name[3],
-                element:name[4],
-                number:name,
-            }
+            const metadata = seedsMetadata[name]
 
             let nft = {
-                name:name,
+                name:metadata.name,
                 description:"Fvckmempool is an ideal, It's bigger than us. Fvckmempool will be wherever Fvckmempoolnians are.",
                 amount:1,
                 files:[f],
                 previewImage:f,
-                metadata:metadata,
+                metadata:JSON.stringify(metadata),
                 id:uuid()
             }
             nft.preview = await getBase64(f) 
@@ -51,7 +46,7 @@ export default function FileUploader({parentCallback}){
 
             <div className="mt-5">
                     <div className="form-group mb-5">
-                        <input type="file" name="imgCollection" onChange={uploadFile} multiple />
+                        <input type="file" name="imgCollection" onChange={uploadFile} directory="" webkitdirectory="" />
                     </div>
                     <Row gutter={[16,16]}>
                 {
