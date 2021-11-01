@@ -40,12 +40,12 @@ export default function Searchbar({drinks, parentCallback}){
         parentCallback(opt)
     }
     return(
-        <div className="my-3">
+        <div className="my-3 container">
             <Row>
-                <Col span={24} className="searchResults">
+                <Col span={24} >
                 <Search  onChange={(evt) => onSearch(evt.target.value)}></Search>
-
-                    {
+                <div className="searchResults" cl>
+                {
                         options.map((opt) => (
                             <div  className="searchResult p-3">
                                 <Button type="link" onClick={() => onClick(opt)}>
@@ -54,6 +54,7 @@ export default function Searchbar({drinks, parentCallback}){
                             </div>
                         ))
                     }
+                </div>
                 </Col>
             </Row>
         </div>

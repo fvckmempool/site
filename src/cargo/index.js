@@ -1,5 +1,7 @@
 import {Cargo} from '@cargo-eth/js';
 const projectId = "617cfa7dc30abf0008466463"
+// const contractId = "0x1df1b7C5fd0329BA2792F28FC6615aCe6079CFaA"
+const nomuAddress = "0x4E805C2d330af3164f65951eC354FD0359dd8d2D"
 // Create a new instance of the Cargo class
 const cargo = new Cargo({ network: 'production' });
 function enableCargo() {
@@ -11,14 +13,34 @@ function enableCargo() {
         
         if(enabled) {
             cargo.api.authenticate().then((response) => {
-                if(response.status === 200){
-                        resolve()
+                if(response && response.status === 200){
+                        resolve(response.data)
+                    }else {
+                        reject()
                     }
             });            
         }else {
            reject()
         }
+    }else{
+        reject()
     }
+    })
+}
+function connectWallet(){
+    return new Promise(async (resolve, reject) => {
+        if (cargo.hasProvider) {
+            // Enable Cargo
+            const enabled = await cargo.enable();
+            
+            if(enabled) {
+                resolve(true)
+            }else {
+               reject()
+            }
+        }else{
+            reject()
+        }
     })
 }
 
@@ -71,16 +93,40 @@ function getCollection(){
         }
     })
 }
-function getCollectible(id){
+function getCollectible(address){
+    return new Promise(async (resolve, reject) => {
+        const options = {
+            contractId:projectId,
+            address:address
+        }
+        const collection = await cargo.api.getUserTokensByContract(options).catch((err) => reject(err))
+        if(collection && collection.status === 200 && collection.err === false){
+            resolve(collection.data)
+        }
+    })
+}
+function getRoyalties(){
+    const params = {
+        projectId:projectId,
+        tokenId:16
+    }
+    cargo.api.getRoyalty(params).then(res => {
+        console.log(res)
+    })
+}
+function setRoyalties(tokenId){
     return new Promise(async (resolve, reject) => {
         const options = {
             projectId:projectId,
-            collectibleId:id
+            tokenId:tokenId,
+            payees:[nomuAddress],
+            commissions:[0.15]
         }
-        const collection = await cargo.api.getTokenDetails(options).catch((err) => reject(err))
-        if(collection && collection.status === 200 && collection.err === false){
-            resolve(collection)
-        }
+        console.log(tokenId)
+        cargo.api.addRoyalty(options).then(res => {
+            console.log(res)
+            resolve(res)
+        }).catch((err) => reject(err));
     })
 }
 export {
@@ -89,5 +135,8 @@ createMintingSession,
 saveNftDataIntoSession,
 mintNft,
 getCollection,
-getCollectible
+getCollectible,
+connectWallet,
+getRoyalties,
+setRoyalties
 }

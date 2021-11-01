@@ -6,6 +6,7 @@ import { Spin, Row, Col, Button, Modal} from 'antd'
 import DrinkList from '../components/drinks/DrinkList'
 import Searchbar from '../components/drinks/Searchbar'
 import DrinkInfo from '../components/drinks/DrinkInfo'
+import ConnectWallet from '../components/drinks/ConnectWallet'
 
 
 export default function Drinks(props){
@@ -26,6 +27,7 @@ export default function Drinks(props){
     //         setCategory(_categories[0].strCategory)
     //     }
     // }
+
     const getDrinks = async () => {
         const _drinks = await getCollection().catch((err) => {console.log(err)})
         if(_drinks){
@@ -38,8 +40,8 @@ export default function Drinks(props){
     }
     const updateDrinks = (b) => {
         console.log(b)
-        const tokenId = allDrinks[page][b].tokenId - 14
-        const _drink = {...allDrinks[page][b].metadata, tokenId:tokenId}
+        const tokenId = allDrinks[page -1][b].tokenId - 14
+        const _drink = {...allDrinks[page -1][b].metadata, tokenId:tokenId}
         console.log(_drink)
         setDrink(_drink)
         setDrinkVisible(true)
@@ -51,6 +53,7 @@ export default function Drinks(props){
         setDrinkVisible(true)
 
     }
+
     useEffect(() => {
         if(allDrinks.length === 0){
             getDrinks()
@@ -73,6 +76,11 @@ export default function Drinks(props){
     return(
         <div className="whiteBg">
             <div className="container py-5">
+                <Row justify="end">
+                    <Col>
+                    <ConnectWallet/>                    
+                    </Col>
+                </Row>
             <Searchbar drinks={allDrinks} parentCallback={(_drink) => searchDrink(_drink)}></Searchbar> 
             {
                 drink !== null ?(
