@@ -69,7 +69,7 @@ export default function ConnectWallet({parentCallback}){
                                         <Button type="primary" onClick={() => _importToken()}>Add $FVCK token to Metamask</Button>
                                     </Col>
                                 </Row>
-                                <DrinkInfo drink={selected.metadata}/>
+                                <DrinkInfo drink={selected.metadata} id={selected.tokenId - 14}/>
                                 <div className="mt-3">
                                     <DrinkList drinks={collectibles} parentCallback={(idx) => setSelected(collectibles[idx])} />
                                 </div>
