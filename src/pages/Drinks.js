@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react'
 // import {getAllCategories, getDrinksByCategory} from '../api/coktail'
-import {getCollection, transferNFTs} from '../cargo/index'
+import {getCollection} from '../cargo/index'
 import { Spin, Row, Col, Button, Modal} from 'antd'
 // import DrinkCategories from '../components/drinks/DrinksCategories'
 import DrinkList from '../components/drinks/DrinkList'
@@ -65,19 +65,24 @@ export default function Drinks(props){
     //        getDrinks() 
     //     }
     // }, [category])
-    useEffect(() => {
+    useEffect(() => {    // const _transferNfts = () => {
+        //     transferNFTs()
+        // }
         if(allDrinks && allDrinks.length > 0){
             const _drinks = allDrinks[page -1]
             setDrinks(_drinks)
         }
     // eslint-disable-next-line
     },[page])
-    const _transferNfts = () => {
-        transferNFTs()
-    }
+    // const _transferNfts = () => {
+    //     transferNFTs()
+    // }
 
     return(
         <div className="whiteBg">
+            <div className="pt-5 text-center">
+                <h1 className="bold">THE FVCKMEMPOOL COLLECTION</h1>
+            </div>
             <div className="container py-5">
                 <Row justify="end">
                     <Col>
@@ -94,7 +99,7 @@ export default function Drinks(props){
             }
                     <div className="">
                         <div className="my-3">
-                            <Button type="error" onClick={() => _transferNfts()}>TRANSFER</Button>
+                            {/* <Button type="error" onClick={() => _transferNfts()}>TRANSFER</Button> */}
                             <Row gutter={[16,16]} justify="end">
                                 { 
                                     pages.map((pg) => (

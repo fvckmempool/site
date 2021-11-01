@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import {Button, message, Modal} from 'antd'
-import {enableCargo, getCollectible} from '../../cargo/'
+import {Button, message, Modal, Row, Col} from 'antd'
+import {enableCargo, getCollectible, importToken} from '../../cargo/'
 import DrinkInfo from './DrinkInfo';
 import DrinkList from './DrinkList';
 
@@ -22,7 +22,7 @@ export default function ConnectWallet({parentCallback}){
     const getOwnedDrink = async () => {
         const _collectibles = await getCollectible(address).catch((err) => {
             console.log(err);
-            message.error("Somenthingf failed please try it again later")
+            message.error("Somenthing failed please try it again later")
         })
         console.log(_collectibles)
         if(_collectibles){
@@ -30,6 +30,17 @@ export default function ConnectWallet({parentCallback}){
                 setCollectibles(_collectibles.results)
         }
     }
+
+    const _importToken = () => {
+        importToken().then(() =>  {
+            message.success("FVCK token succesfully imported")
+
+        }).catch((err) => {
+             console.log(err)
+            message.error("Somenthing failed please try it again later")
+        })
+    }
+
     useEffect(() => {
         connect()
     },[])
@@ -45,6 +56,7 @@ export default function ConnectWallet({parentCallback}){
             setSelected(collectibles[0])
         }
     },[collectibles])
+
     return (
         <div>
             {
@@ -52,6 +64,11 @@ export default function ConnectWallet({parentCallback}){
                     <Modal footer={null} visible={visible} width={1000} onCancel={() => setVisible(false)}>
                         {
                             <div>
+                                <Row justify="start">
+                                    <Col>
+                                        <Button type="primary" onClick={() => _importToken()}>Add $FVCK token to Metamask</Button>
+                                    </Col>
+                                </Row>
                                 <DrinkInfo drink={selected.metadata}/>
                                 <div className="mt-3">
                                     <DrinkList drinks={collectibles} parentCallback={(idx) => setSelected(collectibles[idx])} />
