@@ -24,6 +24,7 @@ export default function ConnectWallet({parentCallback}){
             console.log(err);
             message.error("Somenthingf failed please try it again later")
         })
+        console.log(_collectibles)
         if(_collectibles){
             console.log(_collectibles)
                 setCollectibles(_collectibles.results)
@@ -33,8 +34,9 @@ export default function ConnectWallet({parentCallback}){
         connect()
     },[])
     useEffect(() => {
-        if(address){
+        if(address !== null){
             getOwnedDrink()
+            console.log(address)
         }
     // eslint-disable-next-line
     },[address])

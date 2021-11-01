@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react'
 // import {getAllCategories, getDrinksByCategory} from '../api/coktail'
-import {getCollection} from '../cargo/index'
+import {getCollection, transferNFTs} from '../cargo/index'
 import { Spin, Row, Col, Button, Modal} from 'antd'
 // import DrinkCategories from '../components/drinks/DrinksCategories'
 import DrinkList from '../components/drinks/DrinkList'
@@ -72,6 +72,9 @@ export default function Drinks(props){
         }
     // eslint-disable-next-line
     },[page])
+    const _transferNfts = () => {
+        transferNFTs()
+    }
 
     return(
         <div className="whiteBg">
@@ -91,6 +94,7 @@ export default function Drinks(props){
             }
                     <div className="">
                         <div className="my-3">
+                            <Button type="error" onClick={() => _transferNfts()}>TRANSFER</Button>
                             <Row gutter={[16,16]} justify="end">
                                 { 
                                     pages.map((pg) => (

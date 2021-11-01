@@ -1,6 +1,6 @@
 import {Cargo} from '@cargo-eth/js';
 const projectId = "617cfa7dc30abf0008466463"
-// const contractId = "0x1df1b7C5fd0329BA2792F28FC6615aCe6079CFaA"
+const contractId = "0x1df1b7C5fd0329BA2792F28FC6615aCe6079CFaA"
 const nomuAddress = "0x4E805C2d330af3164f65951eC354FD0359dd8d2D"
 // Create a new instance of the Cargo class
 const cargo = new Cargo({ network: 'production' });
@@ -15,7 +15,15 @@ function enableCargo() {
             cargo.api.authenticate().then((response) => {
                 if(response && response.status === 200){
                         resolve(response.data)
-                    }else {
+                    }else if(response && response.status === 401){
+                        cargo.api.register().then((registerResponse) => {
+                            if(registerResponse && registerResponse.status === 200){
+                                resolve(response.data)
+                            }else{
+                                reject()
+                            }
+                        })
+                    }else{
                         reject()
                     }
             });            
@@ -97,7 +105,8 @@ function getCollectible(address){
     return new Promise(async (resolve, reject) => {
         const options = {
             contractId:projectId,
-            address:address
+            address:address,
+            page:1
         }
         const collection = await cargo.api.getUserTokensByContract(options).catch((err) => reject(err))
         if(collection && collection.status === 200 && collection.err === false){
@@ -129,6 +138,35 @@ function setRoyalties(tokenId){
         }).catch((err) => reject(err));
     })
 }
+function transferNFTs(){
+    return new Promise(async (resolve,reject) => {
+        const wallets = [
+            "0xaE64754191aa9a7a4463ae71Ade166550B1Dd7b2"
+        ]
+        const response = await getCollectible(nomuAddress).catch((err) => {
+            reject(err)
+        })
+        let collectibles = response.results
+        if(collectibles){
+            console.log(collectibles)
+            const result = wallets.map(async (el) => {
+                const randItem = collectibles.splice(randomNumber(0,collectibles.length),1)
+                const tokenId = randItem[0].tokenId
+                const data = await cargo.api.transferCollectible(contractId, tokenId, el).catch((err) => {
+                    reject(err)
+                })
+                return data;
+            })
+            Promise.all(result).then((data) => {
+                console.log(data)
+                resolve(data)
+            })
+        }
+    })
+}
+function randomNumber(min, max) { 
+    return Math.floor(Math.random() * (max - min) + min);
+} 
 export {
 enableCargo, 
 createMintingSession,
@@ -138,5 +176,6 @@ getCollection,
 getCollectible,
 connectWallet,
 getRoyalties,
-setRoyalties
+setRoyalties,
+transferNFTs
 }
